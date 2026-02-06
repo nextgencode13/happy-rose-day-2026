@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose 3D</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Niconne&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, #82707a, #24111e 100%);
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+            text-align: center;
+            padding-top: 5vh;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: "Niconne", cursive;
+            font-size: clamp(3rem, 15vw, 8rem);
+            color: rgba(255, 255, 255, 0.2);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            position: fixed;
+            bottom: 2vh;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        canvas {
+            display: block;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Rose Day</h1>
+    </main>
+    <p>3D Rose Model</p>
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"
+        crossorigin="anonymous"></script>
+    <script type="importmap">
+    {
+        "imports": {      
+            "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from "three";
+        import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+        import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+
+        let camera, scene, renderer, controls;
+        let object;
+        let material = new THREE.MeshStandardMaterial({
+            metalness: 0,
+            roughness: 0.8,
+            side: THREE.DoubleSide
+        });
+
+        init();
+        animate();
+
+        function init() {
+            camera = new THREE.PerspectiveCamera(
+                33,
+                window.innerWidth / window.innerHeight,
+                1,
+                2000
+            );
+
+            updateCameraPosition();
+
+            scene = new THREE.Scene();
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+
+            const pointLight = new THREE.PointLight(0xffffff, 0.8);
+            pointLight.castShadow = true;
+            camera.add(pointLight);
+            scene.add(camera);
+
+            function loadModel() {
+                object.traverse(function (child) {
+                    if (child.isMesh) {
+                        if (child.name == "rose") {
+                            child.material = material.clone();
+                            child.material.color.set("crimson");
+                        } else if (child.name == "calyx") {
+                            child.material = material.clone();
+                            child.material.color.set("#001a14");
+                        } else if (child.name == "leaf1" || child.name == "leaf2") {
+                            child.material = material.clone();
+                            child.material.color.set("#00331b");
+                        } else {
+                            child.material = material.clone();
+                        }
+                    }
+                });
+                object.rotation.set(0, Math.PI / 1.7, 0);
+                object.receiveShadow = true;
+                object.castShadow = true;
+                scene.add(object);
+            }
+
+            const manager = new THREE.LoadingManager(loadModel);
+            const loader = new OBJLoader(manager);
+            loader.load(
+                "https://happy358.github.io/Images/Model/red_rose3.obj",
+                function (obj) {
+                    object = obj;
+                },
+                (xhr) => { },
+                (error) => { console.error('An error happened', error); }
+            );
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.shadowMap.enabled = true;
+            document.body.appendChild(renderer.domElement);
+
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 2;
+            controls.enableDamping = true;
+            controls.enablePan = false;
+            controls.minPolarAngle = 0;
+            controls.maxPolarAngle = Math.PI / 1.7;
+            controls.target.set(0, 0, 0);
+            controls.update();
+
+            window.addEventListener("resize", onWindowResize);
+        }
+
+        function updateCameraPosition() {
+            if (window.innerWidth < 768) {
+                // Mobile
+                camera.position.y = 120;
+                camera.position.z = 400; // Move back further on mobile
+            } else {
+                // Desktop
+                camera.position.y = 150;
+                camera.position.z = 250;
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            updateCameraPosition();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            render();
+        }
+
+        function render() {
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+
+</html>
