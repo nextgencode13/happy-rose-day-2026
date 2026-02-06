@@ -1,0 +1,170 @@
+Here’s a **high-quality, production-grade prompt** you can paste into any AI website/code generator (v0, Lovable, Framer AI, Cursor, etc.) to generate a **stunning Rose Day website** with rich visuals, animation, and interaction.
+
+---
+
+## 🌹 Prompt — “Rose Day Romantic Interactive Website”
+
+**Goal:**
+Create a visually breathtaking, emotionally engaging, romantic “Rose Day” single-page website using HTML, CSS, and JavaScript. The design must be modern, elegant, responsive, animation-heavy, and full of delightful micro-interactions that trigger joy and emotional warmth.
+
+---
+
+### 🎨 Visual Theme & Mood
+
+* Theme: Romantic, dreamy, soft, elegant, magical
+* Primary colors: Rose red, blush pink, soft white, warm gradients
+* Background: Animated gradient sky with floating rose petals falling continuously
+* Typography: Elegant cursive for headings + clean modern font for content
+* Overall vibe: A digital love letter filled with roses, sparkles, glow, and smooth motion
+
+---
+
+### 🌟 Hero Section (First Screen)
+
+* Fullscreen hero with animated background of softly falling rose petals
+* A glowing glassmorphism card in the center
+* Heading text animation:
+  **“Happy Rose Day, My Love 🌹”**
+* Subtext fades in:
+  “A rose for you, as beautiful as your smile”
+* A large animated 3D rose in the center slowly rotating
+* A glowing button: **“Send You a Rose”**
+
+**Interactions:**
+
+* On button click → rose petals burst from the center with sound effect
+* Background sparkles increase
+* Smooth scroll to next section
+
+---
+
+### 💌 Love Message Section
+
+* A parchment-style love letter card that opens with animation
+* Text appears with typewriter effect
+* Subtle floating heart particles around the card
+* Background soft blur with roses
+
+**Interaction:**
+
+* Hovering the card makes it gently float
+* Clicking a small heart icon changes the message to a new romantic quote
+
+---
+
+### 🌹 Rose Gallery Section
+
+* Grid of different roses (red, pink, white, yellow)
+* Each rose card has:
+
+  * Image
+  * Meaning of that rose color
+  * Soft glow on hover
+* When clicked → rose enlarges in modal with petal animation around it
+
+---
+
+### 🎵 Romantic Interaction Section
+
+* A music toggle button (play/pause romantic instrumental)
+* Animated waveform when music plays
+* A “Shower Roses” button that triggers heavy petal rain for 5 seconds
+
+---
+
+### 💖 Memory / Photo Section
+
+* Polaroid style floating photos hanging with thread animation
+* Photos slightly rotate and sway
+* Hover → zoom + glow
+* Clicking photo → opens memory modal with caption
+
+---
+
+### ✨ Surprise Section
+
+* A gift box in center
+* On click → box opens with animation
+* A big animated rose bouquet pops out
+* Text: “You are my forever rose 🌹”
+
+---
+
+### 📝 Personal Message Input
+
+* Input box: “Write a message for your special one”
+* When user types and clicks “Create Rose Wish”
+* The message appears beautifully inside a rose-shaped frame
+
+---
+
+### 💘 Final Section (Emotional Ending)
+
+* Night sky background with stars
+* Animated moonlight glow
+* Text fades in:
+  “Every rose reminds me of you”
+* Floating heart lanterns going upward
+* A final glowing button: **“Happy Rose Day ❤️”**
+
+---
+
+### 🎬 Animations Required
+
+* Continuous falling rose petals
+* Smooth fade, slide, scale animations
+* Parallax scroll effects
+* Hover glow, lift, shadow effects
+* Typing animation
+* Modal popups with blur background
+* Floating hearts and sparkles
+* 3D rotation for rose
+* Confetti/petal burst effects on clicks
+
+---
+
+### 📱 Responsiveness
+
+* Fully mobile responsive
+* Stack sections vertically on mobile
+* Optimize animations for performance
+* Touch interactions for mobile (tap effects)
+
+---
+
+### 🎯 Micro-Interactions (Important)
+
+* Cursor leaves small heart trail while moving
+* Buttons have ripple effect
+* Background reacts subtly to mouse movement (parallax)
+* Smooth scroll behavior
+* Soft romantic background music option
+
+---
+
+### 🧠 UX Feel
+
+User should feel like:
+
+> They entered a magical romantic rose garden made just for their loved one.
+
+---
+
+### 🛠️ Technical Expectations
+
+* Pure HTML, CSS, JavaScript
+* No heavy libraries
+* Use CSS animations and transitions
+* Use canvas or lightweight JS for petals/hearts
+* Performance optimized
+* Clean structure and elegant styling
+
+---
+
+### 💝 Emotional Goal
+
+This website should feel like:
+
+* A digital rose bouquet
+* A romantic surprise gift
+* A love letter expressed through design and motion

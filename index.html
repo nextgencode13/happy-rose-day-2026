@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day, My Love 🌹</title>
+    <meta name="description"
+        content="A magical, romantic Rose Day tribute for someone special. Floating petals, love letters, and surprises.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"
+        crossorigin="anonymous"></script>
+    <script type="importmap">
+    {
+        "imports": {      
+            "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo cursive-text">Rose Day 🌹</a>
+
+            <!-- Mobile Toggle -->
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <!-- Mobile Close Button -->
+                <button class="nav-close" id="navClose" aria-label="Close Navigation">&times;</button>
+
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#love-letter" class="nav-link">Letter</a></li>
+                <li><a href="#gallery" class="nav-link">Garden</a></li>
+                <li><a href="#memories" class="nav-link">Moments</a></li>
+                <li><a href="#surprise" class="nav-link">Surprise</a></li>
+                <li><a href="#lantern-wish" class="nav-link">Wish</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Background Canvas for Petals -->
+    <canvas id="petalsCanvas"></canvas>
+
+    <!-- Cursor Heart Trail -->
+    <div id="cursorHeart" class="cursor-heart"></div>
+
+    <main>
+        <!-- Section 1: Hero -->
+        <section id="hero" class="hero-section">
+            <div class="glass-card fade-in">
+                <h1 class="cursive-text glow-text">Happy Rose Day, My Love 🌹</h1>
+                <p class="subtext">A rose for you, as beautiful as your smile.</p>
+                <div class="hero-rose-container" id="rose3d-container">
+                    <!-- 3D Rose will be rendered here -->
+                </div>
+                <button id="sendRoseBtn" class="premium-button">Send You a Rose</button>
+            </div>
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </section>
+
+        <!-- Section 2: Love Letter -->
+        <section id="love-letter" class="section fade-in">
+            <div class="letter-wrapper" onclick="toggleLetter()">
+                <div class="letter-card" id="letterCard">
+                    <div class="letter-stamp">💌</div>
+                    <h2 class="letter-title">My Dearest</h2>
+
+                    <div class="letter-body">
+                        <p id="typewriterText" class="cursor-typewriter"></p>
+                    </div>
+
+                    <div class="letter-footer">
+                        <span class="signature">- Forever Yours</span>
+                        <button class="letter-btn" onclick="event.stopPropagation(); toggleLetter()">
+                            <span class="btn-icon">✨</span> Click for a New Quote
+                        </button>
+                    </div>
+                </div>
+                <div class="letter-hearts-container" id="letterHearts"></div>
+            </div>
+        </section>
+
+        <!-- Section 3: Rose Gallery -->
+        <section id="gallery" class="section fade-in">
+            <h2 class="title pink-glow">The Garden of Meanings</h2>
+            <div class="rose-grid">
+                <div class="rose-card" data-color="red">
+                    <div class="rose-img-wrapper">
+                        <img src="red_rose.png" alt="Red Rose">
+                    </div>
+                    <h3>Red Rose</h3>
+                    <p>Love & Passion</p>
+                </div>
+                <div class="rose-card" data-color="pink">
+                    <div class="rose-img-wrapper">
+                        <img src="pink_rose.png" alt="Pink Rose">
+                    </div>
+                    <h3>Pink Rose</h3>
+                    <p>Grace & Gratitude</p>
+                </div>
+                <div class="rose-card" data-color="white">
+                    <div class="rose-img-wrapper">
+                        <img src="white_rose.png" alt="White Rose">
+                    </div>
+                    <h3>White Rose</h3>
+                    <p>Purity & Innocence</p>
+                </div>
+                <div class="rose-card" data-color="yellow">
+                    <div class="rose-img-wrapper">
+                        <img src="yellow_rose.png" alt="Yellow Rose">
+                    </div>
+                    <h3>Yellow Rose</h3>
+                    <p>Friendship & Joy</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 5: Memory -->
+        <section id="memories" class="section fade-in">
+            <h2 class="title white-glow">Our Shared Moments</h2>
+            <div class="polaroid-container">
+                <div class="polaroid" style="--angle: -5deg">
+                    <img src="moment1.png" alt="Memory 1">
+                    <div class="caption">The first time...</div>
+                </div>
+                <div class="polaroid" style="--angle: 3deg">
+                    <img src="moment2.png" alt="Memory 2">
+                    <div class="caption">Forever to go</div>
+                </div>
+                <div class="polaroid" style="--angle: -2deg">
+                    <img src="moment3.png" alt="Memory 3">
+                    <div class="caption">Every moment counts</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Surprise -->
+        <section id="surprise" class="section fade-in">
+            <h2 class="title white-glow">A Surprise For You</h2>
+            <div class="gift-container" id="giftWrapper" onclick="openGift(this)">
+                <!-- Box Body -->
+                <div class="gift-box-body">
+                    <div class="gift-ribbon-v"></div>
+                    <div class="gift-ribbon-h"></div>
+                </div>
+
+                <!-- Box Lid -->
+                <div class="gift-box-lid">
+                    <div class="gift-ribbon-v"></div>
+                    <div class="gift-ribbon-h"></div>
+                    <div class="gift-bow"></div>
+                </div>
+
+                <!-- Surprise Content -->
+                <div class="gift-surprise">
+                    <img src="magical_rose.png" alt="Magical Roses" class="surprise-image">
+                    <div class="surprise-text signature glow-text">You are my forever rose 🌹</div>
+                </div>
+            </div>
+            <p class="hint animate-pulse">Click the box for a surprise...</p>
+        </section>
+
+        <!-- Section 7: Send a Wish -->
+        <section id="lantern-wish" class="section fade-in">
+            <div class="glass-card lantern-card">
+                <h2 class="title white-glow">Send a Wish to the Stars</h2>
+                <div class="lantern-editor">
+                    <div class="preview-lantern unlit" id="wishLantern">
+                        <div class="lantern-flame" id="lanternFlame"></div>
+                        <div class="lantern-light" id="lanternGlow"></div>
+                        <textarea id="lanternInput" placeholder="Write your secret wish here..."></textarea>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="lightLanternBtn" class="premium-button secondary">Light the Lamp 🔥</button>
+                    <button id="launchWishBtn" class="premium-button hidden">Launch Your Wish ✨</button>
+                    <button id="resetWishBtn" class="premium-button secondary hidden">Start Again 🔄</button>
+                </div>
+                <div id="launchSuccess" class="hidden">
+                    <p class="cursive-text pink-glow">Your wish is flying to the stars... ❤️</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Ending -->
+        <section id="ending" class="section fade-in">
+            <div class="night-sky">
+                <div class="moon"></div>
+                <div class="stars"></div>
+                <div id="lanterns"></div>
+            </div>
+            <div class="end-content">
+                <h2 class="cursive-text glow-text">Every rose reminds me of you</h2>
+                <button id="finaleBtn" class="premium-button pulse">Happy Rose Day ❤️</button>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>Created with <span class="beating-heart">❤️</span> by <a
+                        href="https://www.linkedin.com/in/anubhav-chaudhary-4bba7918b/" target="_blank">Anubhav</a></p>
+            </footer>
+        </section>
+    </main>
+
+    <!-- Modal for Gallery -->
+    <div id="roseModal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Audio Element (Placeholder or Local) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Interaction Hub -->
+    <div class="interaction-hub">
+        <button id="musicBtn" class="hub-btn" title="Toggle Music">
+            <span id="playIcon">🎵</span>
+            <div class="hub-waveform" id="waveform">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </button>
+        <button id="showerRosesBtn" class="hub-btn" title="Shower Roses">
+            <span>🌸</span>
+        </button>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
